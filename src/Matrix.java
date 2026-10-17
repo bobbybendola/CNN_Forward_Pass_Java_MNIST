@@ -130,6 +130,7 @@ public class Matrix {
     public void set(int i, int j, double value) {
         // Your code starts here
         matrix[i][j]= value; 
+        
         // Your code ends here
     }
 
