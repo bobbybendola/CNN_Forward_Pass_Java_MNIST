@@ -305,7 +305,15 @@ public class Matrix {
     public Matrix transpose() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return null;
+        //switch up the row column set up.
+        double [][] transpose = new double [cols][rows];
+
+        for(int i=0; i<cols; i++){
+            for(int j=0; j<rows;j++){
+                transpose [i][j] = matrix [j][i];
+            }
+        }
+        return new Matrix(transpose);
         // Your code ends here
     }
 
@@ -318,7 +326,13 @@ public class Matrix {
     public double sum() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return 0.0;
+        double sum = 0.0; 
+        for (int i=0; i<rows; i++){
+            for (int j=0; j<cols; j++){
+                sum = sum + matrix[i][j]; 
+            }
+        }
+        return sum;
         // Your code ends here
     }
 
@@ -330,7 +344,14 @@ public class Matrix {
     public double max() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return 0.0;
+        double max = matrix[0][0];
+
+        for (int i=0; i<rows; i++ ){
+            for (int j=0; j<cols; j++){
+                if (matrix[i][j]>max){max=matrix[i][j];}
+            }
+        }
+        return max;
         // Your code ends here
     }
 
@@ -344,7 +365,21 @@ public class Matrix {
     public int argmax() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return 0;
+        double  maxValue= matrix[0][0];  //to start of with first value in matrix
+        int maxPosition= (rows*cols) -1 ; // assumes its the last element to start of it 
+        for (int i=0; i<rows; i++){
+            for (int j =0; j<cols; j++){
+                if( (matrix[i][j]) > maxValue )
+                    { maxValue = matrix[i][j];
+                      int currentLocation=( i* cols ) + j; //to always calculate current index location in memory 
+                      if (currentLocation<maxPosition){
+                        maxPosition = currentLocation;
+                      }
+
+                    }
+            }
+        }
+        return maxPosition;
         // Your code ends here
     }
 
