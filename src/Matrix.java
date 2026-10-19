@@ -225,11 +225,26 @@ public class Matrix {
      * @return the m x n product
      */
     public Matrix mul(Matrix other) {
-        // Your code starts here
-        // TODO: delete the placeholder line below and write your own code
-        return null;
-        // Your code ends here
+    // Your code starts here
+    // TODO: delete the placeholder line below and write your own code
+    // Resulting matrix has dimensions: rows of first x cols of second
+    double[][] matrixMultiply = new double[rows][other.getCols()];
+    // Loop through each row of the first matrix
+    for (int i = 0; i < rows; i++) {
+        // Loop through each column of the second matrix
+        for (int j = 0; j < other.getCols(); j++) {
+            double accumulate = 0.0; //used to store accumalted value over a row and column 
+            // Inner loop to calculate the dot product 
+            for (int k = 0; k < cols; k++) {
+                accumulate += matrix[i][k] * other.get(k, j);
+            }        
+            // Assign the computed dot product to the result matrix
+            matrixMultiply[i][j] = accumulate;
+        }
     }
+    return new Matrix(matrixMultiply);
+}
+    
 
     /**
      * Task 2.2b: multiplies every element by a scalar.
@@ -240,7 +255,13 @@ public class Matrix {
     public Matrix mul(double scalar) {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return null;
+        double[][] scalarMatrix = new double[rows][cols];
+         for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                scalarMatrix[i][j] = matrix[i][j]*scalar;
+            }
+        }
+        return new Matrix(scalarMatrix);
         // Your code ends here
     }
 
@@ -252,8 +273,13 @@ public class Matrix {
      */
     public Matrix div(double scalar) {
         // Your code starts here
-        // TODO: delete the placeholder line below and write your own code
-        return null;
+        double[][] scalarMatrix = new double[rows][cols];
+         for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                scalarMatrix[i][j] = matrix[i][j]/scalar;
+            }
+        }
+        return new Matrix(scalarMatrix);
         // Your code ends here
     }
 
