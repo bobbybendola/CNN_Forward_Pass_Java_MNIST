@@ -20,12 +20,13 @@ import java.util.Scanner;
  * <p>All arguments are valid: you never need to check shapes or indices.</p>
  */
 public class Matrix {
-
     // ------------------------------------------------------------------------------------
     // Self-defined attributes: decide how you store the data (hint: a double[][] and the sizes).
     // ------------------------------------------------------------------------------------
     // Your code starts here
-    private double [][] matrix; 
+    private int rows;
+    private int cols;
+    private double[][] matrix;
     // Your code ends here
 
     // ====================================================================================
@@ -40,12 +41,10 @@ public class Matrix {
      */
     public Matrix(int rows, int cols) {
         // Your code starts here
-        double [][] zeroMatrix= new double [rows][cols]; 
-        for(int i=0; i<rows;i++){
-            for (int j=0; j<cols; j++){
-                    zeroMatrix[i][j]=0.0;        
-            }
-        }
+        // store the sizes and a new array in the fields; Java fills new double arrays with 0.0
+        this.rows = rows;
+        this.cols = cols;
+        this.matrix = new double[rows][cols];
         // Your code ends here
     }
 
@@ -56,15 +55,12 @@ public class Matrix {
      * @param values a rectangular array: values[i][j] is the element in row i, column j
      */
     public Matrix(double[][] values) {
-        // Your code starts here
-        double [][] copyMatrix = new double [values.length][values[0].length]; 
-
-        for (int i=0; i<values.length; i++){
-            for (int j=0; j<values[0].length; j++){
-                    copyMatrix[i][j] = values[i][j];
-            }
-        }
-            // Your code ends here
+        this.rows = values.length;
+        this.cols = values[0].length;
+        this.matrix = new double[rows][cols];
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                this.matrix[i][j] = values[i][j];   // copy each value, not the array reference
     }
 
     /**
@@ -130,7 +126,6 @@ public class Matrix {
     public void set(int i, int j, double value) {
         // Your code starts here
         matrix[i][j]= value; 
-        
         // Your code ends here
     }
 
@@ -147,6 +142,15 @@ public class Matrix {
     public String print() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
+        System.out.print("["); 
+        for (int i=0; i<matrix.length; i++){
+            for(int j=0; j<matrix[0].length; j++){
+                System.out.printf( "%.5f", matrix[i][j]); 
+                System.out.print(","); 
+            }
+            System.out.print(";"); 
+        }
+        System.out.print("]");
         return null;
         // Your code ends here
     }
