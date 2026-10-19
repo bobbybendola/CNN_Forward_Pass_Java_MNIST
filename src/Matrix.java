@@ -188,7 +188,13 @@ public class Matrix {
     public Matrix add(Matrix other) {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return null;
+        double[][] elementSum = new double[other.getRows()][other.getCols()];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                elementSum[i][j] = matrix[i][j] + other.get(i, j);
+            }
+        }
+        return new Matrix(elementSum);
         // Your code ends here
     }
 
@@ -201,7 +207,13 @@ public class Matrix {
     public Matrix sub(Matrix other) {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return null;
+        double[][] elementDifference = new double[other.getRows()][other.getCols()];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                elementDifference[i][j] = matrix[i][j] - other.get(i, j);
+            }
+        }
+        return new Matrix(elementDifference);
         // Your code ends here
     }
 
