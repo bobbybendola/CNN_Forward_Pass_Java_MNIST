@@ -307,7 +307,6 @@ public class Matrix {
         // TODO: delete the placeholder line below and write your own code
         //switch up the row column set up.
         double [][] transpose = new double [cols][rows];
-
         for(int i=0; i<cols; i++){
             for(int j=0; j<rows;j++){
                 transpose [i][j] = matrix [j][i];
@@ -375,7 +374,6 @@ public class Matrix {
                       if (currentLocation<maxPosition){
                         maxPosition = currentLocation;
                       }
-
                     }
             }
         }
@@ -393,8 +391,18 @@ public class Matrix {
      */
     public boolean isEq(Matrix other, double tol) {
         // Your code starts here
-        // TODO: delete the placeholder line below and write your own code
-        return false;
+        //returning false if the shape is incorrect 
+        if (other == null || other.getRows() != rows || other.getCols() != cols) {
+            return false;
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (Math.abs(matrix[i][j] - other.get(i, j)) > tol) {
+                    return false;
+                }
+            }
+        }
+        return true;
         // Your code ends here
     }
 
@@ -411,7 +419,11 @@ public class Matrix {
     public Matrix getRow(int i) {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return null;
+        double [][] columnResult = new double [1][cols];
+        for (int  j=0 ; j<cols ; j++){
+            columnResult[1][j]= matrix[i][j]; 
+        }
+         return new Matrix(columnResult);
         // Your code ends here
     }
 
@@ -429,6 +441,7 @@ public class Matrix {
     public Matrix slice(int r0, int r1, int c0, int c1) {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
+
         return null;
         // Your code ends here
     }
