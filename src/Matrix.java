@@ -71,7 +71,7 @@ public class Matrix {
     public int getRows() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return matrix.length; 
+        return (matrix.length); 
         // Your code ends here
     }
 
@@ -83,7 +83,7 @@ public class Matrix {
     public int getCols() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return matrix[0].length; 
+        return (matrix[0].length); 
         // Your code ends here
     }
 
@@ -142,16 +142,17 @@ public class Matrix {
     public String print() {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        System.out.print("["); 
+        StringBuilder printMatrix = new StringBuilder(); 
+        printMatrix.append("[");
         for (int i=0; i<matrix.length; i++){
             for(int j=0; j<matrix[0].length; j++){
-                System.out.printf( "%.5f", matrix[i][j]); 
-                System.out.print(","); 
+                printMatrix.append(String.format("%.5f", matrix[i][j])); 
+                if(j!=matrix[0].length-1){printMatrix.append(",");}
             }
-            System.out.print(";"); 
+             if(i!=matrix.length-1){printMatrix.append(";");}
         }
-        System.out.print("]");
-        return null;
+         printMatrix.append("]");
+        return printMatrix.toString();
         // Your code ends here
     }
 
