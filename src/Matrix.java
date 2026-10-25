@@ -293,7 +293,13 @@ public class Matrix {
     public Matrix hadamard(Matrix other) {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
-        return null;
+        double[][] kernelMatrix = new double[rows][cols];
+        for(int i=0; i<rows; i++){
+            for (int j=0; j<cols; j++){
+                kernelMatrix[i][j] = (matrix[i][j] * other.get(i,j));
+            }
+        }
+         return new Matrix(kernelMatrix);
         // Your code ends here
     }
 
@@ -441,8 +447,23 @@ public class Matrix {
     public Matrix slice(int r0, int r1, int c0, int c1) {
         // Your code starts here
         // TODO: delete the placeholder line below and write your own code
+        if (r0 < 0 || r1 > this.getRows() || c0 < 0 || c1 > this.getCols() || r0 > r1 || c0 > c1) {
+           throw new IndexOutOfBoundsException("Invalid slice range.");
+    }
+        //calculating the number of rows and columns 
+        int newRows=r1-r0; 
+        int newCols=c1-c0; 
 
-        return null;
+        double [][] slice= new double [newRows][newCols]; 
+
+        //copying elements from old to new sliced matrix
+        for (int i=0; i< newRows; i++){
+            for (int j=0; j<newCols; j++){
+                slice[i][j] = this.get(r0+i, c0+j); 
+            }
+        }
+
+         return new Matrix(slice);
         // Your code ends here
     }
 
@@ -455,12 +476,33 @@ public class Matrix {
      * @param newCols columns of the result (newRows * newCols equals rows * cols)
      * @return a new newRows x newCols matrix
      */
-    public Matrix reshape(int newRows, int newCols) {
-        // Your code starts here
-        // TODO: delete the placeholder line below and write your own code
-        return null;
-        // Your code ends here
+public Matrix reshape(int newRows, int newCols) {
+    int oldRows = this.getRows();
+    int oldCols = this.getCols();
+
+    // Check if shape of matrix is correct to test with
+    if (oldRows * oldCols != newRows * newCols) {
+        throw new IllegalArgumentException("Cannot reshape matrix of size " 
+            + oldRows + "x" + oldCols + " into " + newRows + "x" + newCols);
     }
+
+    // 2Create a new 2D array for the reshaped data
+    double[][] newData = new double[newRows][newCols];
+
+    //copying elements from old to new sliced matrix
+    for (int i = 0; i < newRows; i++) {
+        for (int j = 0; j < newCols; j++) {
+            int linearIndex = i * newCols + j;
+            int oldR = linearIndex / oldCols;
+            int oldC = linearIndex % oldCols;
+            
+            newData[i][j] = this.get(oldR, oldC); // Or direct array access if internal fields are accessible
+        }
+    }
+
+    // 4. Return the new Matrix instance
+    return new Matrix(newData);
+}
 
     /**
      * Task 3.4: places {@code other} to the right of this matrix (horizontal stack). The
