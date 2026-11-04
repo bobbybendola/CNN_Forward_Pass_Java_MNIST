@@ -1,0 +1,2 @@
+predictions_first10 9 9 6 4 4 8 2 7 9 9
+accuracy 0.9900
